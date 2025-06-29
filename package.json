@@ -1,0 +1,20 @@
+{
+  "name": "hello-world",
+  "version": "1.0.0",
+  "description": ":)",
+  "homepage": "https://github.com/Learning-Actions-in-Persian/Session-3#readme",
+  "bugs": {
+    "url": "https://github.com/Learning-Actions-in-Persian/Session-3/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Learning-Actions-in-Persian/Session-3.git"
+  },
+  "license": "GPL-3.0-or-later",
+  "author": "Amir Arsalan Yavari",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  }
+}
