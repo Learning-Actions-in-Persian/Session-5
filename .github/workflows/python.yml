@@ -29,3 +29,33 @@ jobs:
     - name: Run tests
       run: pytest python/test.py
   
+  build:
+    needs: test-python
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install pyinstaller
+      run: pip install pyinstaller
+
+    - name: Build for amd64
+      run: pyinstaller --onefile --distpath dist_x86_64 --target-architecture x86_64 --name python_hello_world_x86_64.out python/main.py
+
+    - name: Build for arm64
+      run: pyinstaller --onefile --distpath dist_arm64 --target-architecture arm64 --name python_hello_world_arm.out python/main.py
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: python_hello_world_linux_builds
+        path: |
+          dist_x86_64/python_hello_world_x86_64.out
+          dist_arm64/python_hello_world_arm.out
+        retention-days: 90
+
